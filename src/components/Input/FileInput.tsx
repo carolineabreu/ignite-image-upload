@@ -1,30 +1,32 @@
 import {
   Box,
-  FormLabel,
   CircularProgress,
   CircularProgressLabel,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
   Icon,
   Image,
   Text,
-  FormControl,
-  FormErrorMessage,
-  Flex,
-  useToast,
   Tooltip,
+  useToast,
 } from '@chakra-ui/react';
 import axios, { AxiosRequestConfig, CancelTokenSource } from 'axios';
 import {
-  useState,
-  SetStateAction,
   Dispatch,
-  ForwardRefRenderFunction,
   forwardRef,
+  ForwardRefRenderFunction,
+  SetStateAction,
   useCallback,
   useEffect,
+  useState,
 } from 'react';
 import {
   FieldError,
+  FieldErrorsImpl,
   FieldValues,
+  Merge,
   UseFormSetError,
   UseFormTrigger,
 } from 'react-hook-form';
@@ -33,7 +35,7 @@ import { api } from '../../services/api';
 
 export interface FileInputProps {
   name: string;
-  error?: FieldError;
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   setImageUrl: Dispatch<SetStateAction<string>>;
   localImageUrl: string;
   setLocalImageUrl: Dispatch<SetStateAction<string>>;
